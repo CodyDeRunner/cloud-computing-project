@@ -1,0 +1,52 @@
+﻿@using WebQLSV.Models
+@model List<StudentVm>;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card mb-4">
+    <div class="card-header">
+        <a class="btn btn-success" href ="/Student/Insert">Thêm sinh viên</a>
+    </div>
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Bảng thông tin sinh viên
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã số sinh viên</th>
+                        <th>Tên đầy đủ</th>
+                        <th>Nam/nữ</th>
+                        <th>Ngày sinh</th>
+                        <th>Khoa</th>
+                        <th>Số điện thoại</th>
+                        <th>Tình Trạng</th>
+                        <th>Tùy chỉnh</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    @foreach (var i in Model)
+                    {
+                        <tr>
+                            <td>@i.Mssv</td>
+                            <td>@i.Hoten</td>
+                            <td>@i.GioiTinh</td>
+                            <td>@i.NgaySinh</td>
+                            <td>@i.Khoa</td>
+                            <td>@i.Sdt</td>
+                            <td>@(i.TinhTrang ? "Disable" : "Active")</td>
+                            <td>
+                                <a class="btn btn-info" href="/Student/Edit/@i.Mssv">Chỉnh sửa</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

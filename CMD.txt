@@ -1,0 +1,13 @@
+docker network create student-mysql
+
+docker pull mysql:8
+docker container run --name mysqldb --network student-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=studentmanager -d mysql:8
+Run as Maven install
+--------
+docker image build -t student-jdbc .
+docker container run --network student-mysql --name student-jdbc-container -p 8080:8080 -d student-jdbc
+-------
+docker build -t web-dotnet -f WebQLSV/Dockerfile .
+docker run --network student-mysql --name web-qlsv -p 9000:80 web-dotnet
+
+
